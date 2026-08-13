@@ -183,12 +183,25 @@ export default function App() {
         console.log('Prompting 1AM Wallet for ZK proof transaction confirmation...');
         try {
           if (typeof walletApi.signData === 'function') {
-            const dataString = `Midnight ZK Proof Verification (${result.proofHash})`;
-            const options = { encoding: 'text' };
+            const rawText = `Midnight ZK Proof Verification: ${result.proofHash}`;
+            const hexData = Array.from(new TextEncoder().encode(rawText))
+              .map(b => b.toString(16).padStart(2, '0'))
+              .join('');
+
+            // Payload matching 1AM Wallet schema: { data: string, options: { encoding: 'hex' | 'text' } }
+            const payload = {
+              data: hexData,
+              options: { encoding: 'hex' }
+            };
+
             try {
-              await walletApi.signData(walletAddress, dataString, options);
+              await walletApi.signData(payload);
             } catch (e1) {
-              await walletApi.signData(dataString, options);
+              try {
+                await walletApi.signData(walletAddress, payload);
+              } catch (e2) {
+                await walletApi.signData(walletAddress, hexData, { encoding: 'hex' });
+              }
             }
           } else if (typeof walletApi.balanceAndProveTx === 'function') {
             await walletApi.balanceAndProveTx({
