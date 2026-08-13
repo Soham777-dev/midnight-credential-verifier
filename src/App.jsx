@@ -37,22 +37,23 @@ export default function App() {
     setIsConnectingWallet(true);
 
     try {
-      // Check for Midnight / Lace browser extension wallet provider
-      const midnightProvider = typeof window !== 'undefined' && (
-        window.midnight || 
-        window.cardano?.midnight || 
-        window.lace?.midnight
-      );
+      // Safely find valid provider with enable function
+      const provider = typeof window !== 'undefined' ? (
+        (window.midnight && typeof window.midnight.enable === 'function' ? window.midnight : null) ||
+        (window.cardano?.midnight && typeof window.cardano.midnight.enable === 'function' ? window.cardano.midnight : null) ||
+        (window.lace?.midnight && typeof window.lace.midnight.enable === 'function' ? window.lace.midnight : null) ||
+        (window.midnight?.mnLace && typeof window.midnight.mnLace.enable === 'function' ? window.midnight.mnLace : null)
+      ) : null;
 
-      if (midnightProvider) {
+      if (provider && typeof provider.enable === 'function') {
         // Trigger extension popup approval window
-        const api = await midnightProvider.enable();
-        const state = typeof api.state === 'function' ? await api.state() : null;
+        const api = await provider.enable();
+        const state = typeof api?.state === 'function' ? await api.state() : null;
         const address = state?.address || state?.coinPublicKey || 'midnight1q9x_lace_wallet';
         setWalletAddress(address);
         setWalletConnected(true);
       } else {
-        // Fallback demo connection if extension is not installed in current browser
+        // Fallback demo connection if extension is not installed or lacks enable method
         setWalletAddress('midnight1q9x...3f8a (Preprod Testnet)');
         setWalletConnected(true);
         setWalletNotice('Lace/Midnight Extension not detected. Connected using Midnight Preprod Testnet Wallet mode.');
