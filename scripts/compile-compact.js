@@ -1,3 +1,7 @@
+/**
+ * Midnight Compact Smart Contract Compiler Script
+ * Compiles Compact privacy circuits into JavaScript/TypeScript bindings.
+ */
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
