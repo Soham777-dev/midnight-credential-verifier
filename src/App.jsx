@@ -12,6 +12,7 @@ export default function App() {
   // Wallet Connection State
   const [walletConnected, setWalletConnected] = useState(false);
   const [walletAddress, setWalletAddress] = useState('');
+  const [walletApi, setWalletApi] = useState(null);
   const [isConnectingWallet, setIsConnectingWallet] = useState(false);
   const [walletNotice, setWalletNotice] = useState('');
 
@@ -113,6 +114,7 @@ export default function App() {
         }
 
         const finalAddress = address || 'mn_shield_addr_preview1fer3ykztln90kmq2nfwclt6rwa7kl5n2sqwgludrj53dvjldyeu58yrvhynvdwmvrn2ecqwvfum5f2wue56tu96nt44zfrg02ty3xgca0xxg';
+        setWalletApi(api);
         setWalletAddress(finalAddress);
         setWalletConnected(true);
         setWalletNotice(`Successfully connected to ${walletName} (Preprod Testnet)!`);
@@ -134,6 +136,7 @@ export default function App() {
   const disconnectWallet = () => {
     setWalletConnected(false);
     setWalletAddress('');
+    setWalletApi(null);
     setWalletNotice('');
     setErrorMessage('');
   };
@@ -174,6 +177,24 @@ export default function App() {
 
       // Step 3: Verify On-Chain & Update Ledger State
       const result = await contract.verifyEligibility(yearNum, currentYear, userSecret);
+
+      // Trigger 1AM Wallet Transaction Signing Popup if wallet API is connected
+      if (walletApi) {
+        const signFn = walletApi.balanceAndProveTx || walletApi.signTx || walletApi.submitTx || walletApi.signData || walletApi.submitTransaction;
+        if (typeof signFn === 'function') {
+          console.log('Prompting 1AM Wallet for transaction confirmation...');
+          try {
+            await signFn.call(walletApi, {
+              contract: '0x7b9a2c1f4e3d8a901b2c3d4e5f6a7b8c9d0e1f2a',
+              circuit: 'verifyEligibility',
+              proofHash: result.proofHash
+            });
+          } catch (signErr) {
+            console.warn('1AM Wallet transaction prompt:', signErr);
+          }
+        }
+      }
+
       await new Promise(r => setTimeout(r, 500));
 
       setProofResult(result);
