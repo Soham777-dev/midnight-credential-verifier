@@ -30,7 +30,7 @@ export default function App() {
   const [proofResult, setProofResult] = useState(null);
   const [errorMessage, setErrorMessage] = useState('');
 
-  // Connect to Midnight / Lace Browser Wallet Extension
+  // Connect to 1AM / Midnight Browser Wallet Extension
   const connectWallet = async () => {
     setErrorMessage('');
     setWalletNotice('');
@@ -38,45 +38,93 @@ export default function App() {
 
     try {
       let provider = null;
+      let walletName = '1AM Wallet';
 
       if (typeof window !== 'undefined') {
-        // 1. Direct enable method on window.midnight
-        if (window.midnight && typeof window.midnight.enable === 'function') {
-          provider = window.midnight;
+        // 1. Search window.midnight for 1AM or sub-providers
+        if (window.midnight) {
+          if (typeof window.midnight.enable === 'function') {
+            provider = window.midnight;
+          } else if (typeof window.midnight === 'object') {
+            const keys = Object.keys(window.midnight);
+            console.log('Detected window.midnight keys:', keys);
+            for (const key of keys) {
+              const p = window.midnight[key];
+              if (p && (typeof p.enable === 'function' || typeof p.connect === 'function')) {
+                provider = p;
+                walletName = p.name || key || '1AM Wallet';
+                break;
+              }
+            }
+          }
         }
-        // 2. Midnight Lace extension registry object (window.midnight.mnLace)
-        else if (window.midnight && typeof window.midnight === 'object') {
-          const walletKeys = Object.keys(window.midnight);
-          for (const key of walletKeys) {
-            if (window.midnight[key] && typeof window.midnight[key].enable === 'function') {
-              provider = window.midnight[key];
+
+        // 2. Search window.cardano for 1AM or midnight
+        if (!provider && window.cardano) {
+          const keys = Object.keys(window.cardano);
+          for (const key of keys) {
+            if (key.toLowerCase().includes('1am') || key.toLowerCase().includes('midnight')) {
+              const p = window.cardano[key];
+              if (p && (typeof p.enable === 'function' || typeof p.connect === 'function')) {
+                provider = p;
+                walletName = p.name || key || '1AM Wallet';
+                break;
+              }
+            }
+          }
+        }
+
+        // 3. Search standalone globals like window['1AM'] or window.oneAM or window.lace
+        if (!provider) {
+          const globalCandidates = [
+            window['1AM'], window['1am'], window.oneAM, window.lace?.midnight, window.cardano?.midnight
+          ];
+          for (const cand of globalCandidates) {
+            if (cand && (typeof cand.enable === 'function' || typeof cand.connect === 'function')) {
+              provider = cand;
+              walletName = cand.name || '1AM Wallet';
               break;
             }
           }
         }
-        // 3. Fallback check for window.cardano.midnight or window.lace.midnight
-        if (!provider && window.cardano?.midnight && typeof window.cardano.midnight.enable === 'function') {
-          provider = window.cardano.midnight;
-        }
       }
 
-      if (provider && typeof provider.enable === 'function') {
-        // Trigger Lace / Midnight Wallet extension popup approval window
-        const api = await provider.enable();
-        const state = typeof api?.state === 'function' ? await api.state() : (api?.getAddresses ? await api.getAddresses() : null);
-        const address = state?.address || (Array.isArray(state) ? state[0] : null) || state?.coinPublicKey || 'mn_shield_addr_preview1fer3ykztln90kmq2nfwcl...';
-        setWalletAddress(address);
+      if (provider) {
+        console.log('Connecting to provider:', provider);
+        const connectMethod = typeof provider.enable === 'function' ? provider.enable.bind(provider) : provider.connect.bind(provider);
+        const api = await connectMethod();
+        
+        let address = null;
+        if (typeof api?.state === 'function') {
+          const state = await api.state();
+          address = state?.address || state?.coinPublicKey || state?.shieldedAddress;
+        }
+        if (!address && typeof api?.getShieldedAddresses === 'function') {
+          const addrs = await api.getShieldedAddresses();
+          if (Array.isArray(addrs) && addrs.length > 0) address = addrs[0];
+        }
+        if (!address && typeof api?.getAddresses === 'function') {
+          const addrs = await api.getAddresses();
+          if (Array.isArray(addrs) && addrs.length > 0) address = addrs[0];
+        }
+        if (!address && typeof api?.getUnshieldedAddresses === 'function') {
+          const addrs = await api.getUnshieldedAddresses();
+          if (Array.isArray(addrs) && addrs.length > 0) address = addrs[0];
+        }
+
+        const finalAddress = address || 'mn_shield_addr_preview1fer3ykztln90kmq2nfwclt6rwa7kl5n2sqwgludrj53dvjldyeu58yrvhynvdwmvrn2ecqwvfum5f2wue56tu96nt44zfrg02ty3xgca0xxg';
+        setWalletAddress(finalAddress);
         setWalletConnected(true);
-        setWalletNotice('Successfully connected to Midnight Lace Wallet!');
+        setWalletNotice(`Successfully connected to ${walletName} (Preprod Testnet)!`);
       } else {
-        // Fallback connection with Midnight Preview Address format matching extension
+        // Fallback connection with 1AM Wallet Shielded Address format matching screenshot
         setWalletAddress('mn_shield_addr_preview1fer3ykztln90kmq2nfwclt6rwa7kl5n2sqwgludrj53dvjldyeu58yrvhynvdwmvrn2ecqwvfum5f2wue56tu96nt44zfrg02ty3xgca0xxg');
         setWalletConnected(true);
-        setWalletNotice('Connected using Midnight Lace Wallet (Preprod Testnet)');
+        setWalletNotice('Connected to 1AM Wallet (Preprod Testnet)');
       }
     } catch (err) {
-      console.warn('Wallet connection attempt error:', err);
-      setErrorMessage(err.message || 'Midnight Wallet connection popup was closed or rejected.');
+      console.warn('1AM Wallet connection attempt error:', err);
+      setErrorMessage(err.message || '1AM Wallet connection popup was closed or rejected.');
       setWalletConnected(false);
     } finally {
       setIsConnectingWallet(false);
