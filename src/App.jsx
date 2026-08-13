@@ -195,9 +195,21 @@ export default function App() {
 
           if (typeof walletApi.signData === 'function') {
             try {
-              await walletApi.signData(walletAddress, payload);
+              // Signature 1: signData(hexString, { encoding: 'hex' })
+              await walletApi.signData(hexData, { encoding: 'hex' });
             } catch (e1) {
-              console.warn('1AM Wallet signData prompt notice:', e1.message);
+              try {
+                // Signature 2: signData(rawText, { encoding: 'text' })
+                await walletApi.signData(rawText, { encoding: 'text' });
+              } catch (e2) {
+                try {
+                  // Signature 3: signData({ data: hexData, options: { encoding: 'hex' } })
+                  await walletApi.signData({ data: hexData, options: { encoding: 'hex' } });
+                } catch (e3) {
+                  // Signature 4: signData(walletAddress, hexData, { encoding: 'hex' })
+                  await walletApi.signData(walletAddress, hexData, { encoding: 'hex' });
+                }
+              }
             }
           } else if (typeof walletApi.balanceAndProveTx === 'function') {
             await walletApi.balanceAndProveTx({
