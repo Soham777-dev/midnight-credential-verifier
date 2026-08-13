@@ -182,26 +182,22 @@ export default function App() {
       if (walletApi) {
         console.log('Prompting 1AM Wallet for ZK proof transaction confirmation...');
         try {
+          const rawText = `Midnight ZK Proof Verification: ${result.proofHash}`;
+          const hexData = Array.from(new TextEncoder().encode(rawText))
+            .map(b => b.toString(16).padStart(2, '0'))
+            .join('');
+
+          // CIP-30 / 1AM schema: signData(address, { data: string, options: { encoding: 'hex' | 'text' } })
+          const payload = {
+            data: hexData,
+            options: { encoding: 'hex' }
+          };
+
           if (typeof walletApi.signData === 'function') {
-            const rawText = `Midnight ZK Proof Verification: ${result.proofHash}`;
-            const hexData = Array.from(new TextEncoder().encode(rawText))
-              .map(b => b.toString(16).padStart(2, '0'))
-              .join('');
-
-            // Payload matching 1AM Wallet schema: { data: string, options: { encoding: 'hex' | 'text' } }
-            const payload = {
-              data: hexData,
-              options: { encoding: 'hex' }
-            };
-
             try {
-              await walletApi.signData(payload);
+              await walletApi.signData(walletAddress, payload);
             } catch (e1) {
-              try {
-                await walletApi.signData(walletAddress, payload);
-              } catch (e2) {
-                await walletApi.signData(walletAddress, hexData, { encoding: 'hex' });
-              }
+              console.warn('1AM Wallet signData prompt notice:', e1.message);
             }
           } else if (typeof walletApi.balanceAndProveTx === 'function') {
             await walletApi.balanceAndProveTx({
@@ -213,7 +209,7 @@ export default function App() {
             await walletApi.signTx(result.proofHash);
           }
         } catch (signErr) {
-          console.warn('1AM Wallet signing interaction:', signErr);
+          console.warn('1AM Wallet signing interaction notice:', signErr.message);
         }
       }
 
