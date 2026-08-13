@@ -180,18 +180,27 @@ export default function App() {
 
       // Trigger 1AM Wallet Transaction Signing Popup if wallet API is connected
       if (walletApi) {
-        const signFn = walletApi.balanceAndProveTx || walletApi.signTx || walletApi.submitTx || walletApi.signData || walletApi.submitTransaction;
-        if (typeof signFn === 'function') {
-          console.log('Prompting 1AM Wallet for transaction confirmation...');
-          try {
-            await signFn.call(walletApi, {
-              contract: '0x7b9a2c1f4e3d8a901b2c3d4e5f6a7b8c9d0e1f2a',
+        console.log('Prompting 1AM Wallet for ZK proof transaction confirmation...');
+        try {
+          if (typeof walletApi.signData === 'function') {
+            const dataString = `Midnight ZK Proof Verification (${result.proofHash})`;
+            const options = { encoding: 'text' };
+            try {
+              await walletApi.signData(walletAddress, dataString, options);
+            } catch (e1) {
+              await walletApi.signData(dataString, options);
+            }
+          } else if (typeof walletApi.balanceAndProveTx === 'function') {
+            await walletApi.balanceAndProveTx({
+              contractAddress: '0x7b9a2c1f4e3d8a901b2c3d4e5f6a7b8c9d0e1f2a',
               circuit: 'verifyEligibility',
               proofHash: result.proofHash
             });
-          } catch (signErr) {
-            console.warn('1AM Wallet transaction prompt:', signErr);
+          } else if (typeof walletApi.signTx === 'function') {
+            await walletApi.signTx(result.proofHash);
           }
+        } catch (signErr) {
+          console.warn('1AM Wallet signing interaction:', signErr);
         }
       }
 
