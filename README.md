@@ -1,5 +1,5 @@
 # Midnight Confidential Credential Verifier
-![CI](https://github.com/kartikbotre/midnight-credential-verifier/actions/workflows/ci.yml/badge.svg)
+![CI](https://github.com/Soham777-dev/midnight-credential-verifier/actions/workflows/ci.yml/badge.svg)
 > Privacy-preserving zero-knowledge age and credential verification dApp built on Midnight Network.
 
 ## Live Demo
@@ -34,7 +34,7 @@ On-chain observers and external entities see only the public ledger state update
 ## Setup & Run Locally
 1. Clone the repository:
    ```bash
-   git clone https://github.com/kartikbotre/midnight-credential-verifier.git
+   git clone https://github.com/Soham777-dev/midnight-credential-verifier.git
    cd midnight-credential-verifier
    ```
 2. Install dependencies:
