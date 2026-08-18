@@ -3,7 +3,7 @@
 > Privacy-preserving zero-knowledge age and credential verification dApp built on Midnight Network.
 
 ## Live Demo
-[https://midnight-credential-verifier.vercel.app](https://midnight-credential-verifier.vercel.app)
+[https://midnight-credential-verifier-c2xkfwx1s-sohamdev.vercel.app/](https://midnight-credential-verifier-c2xkfwx1s-sohamdev.vercel.app/)
 
 ## Contract Address
 | Network  | Address                          |
