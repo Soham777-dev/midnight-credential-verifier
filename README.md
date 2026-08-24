@@ -5,6 +5,9 @@
 ## Live Demo
 [https://midnight-credential-verifier-c2xkfwx1s-sohamdev.vercel.app/](https://midnight-credential-verifier-c2xkfwx1s-sohamdev.vercel.app/)
 
+## Demo Video
+[Watch Demo Video](https://drive.google.com/file/d/1gTO8L2lRXJF93XILd0hfG4chTb4ALRuG/view?usp=sharing)
+
 ## Contract Address
 | Network  | Address                          |
 |----------|----------------------------------|
