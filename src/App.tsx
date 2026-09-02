@@ -1,7 +1,7 @@
 import React from 'react';
 import { useMidnight } from './hooks/useMidnight';
-import { Layout } from './components/Layout';
-import { WalletConnect } from './components/WalletConnect';
+import Layout from './components/Layout';
+import WalletConnect from './components/WalletConnect';
 import { CredentialVerifier } from './components/CredentialVerifier';
 
 export default function App() {
@@ -9,9 +9,11 @@ export default function App() {
 
   return (
     <Layout
-      walletSection={
+      walletSlot={
         <WalletConnect
-          wallet={wallet}
+          connected={wallet.connected}
+          address={wallet.address}
+          connecting={wallet.isConnecting}
           onConnect={connect}
           onDisconnect={disconnect}
         />

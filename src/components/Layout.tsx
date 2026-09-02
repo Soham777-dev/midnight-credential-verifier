@@ -10,7 +10,7 @@ interface LayoutProps {
  * Layout — top-level shell: navbar + page content.
  * walletSlot renders the WalletConnect button in the header.
  */
-export default function Layout({ children, walletSlot }: LayoutProps) {
+export function Layout({ children, walletSlot }: LayoutProps) {
   return (
     <div className="app-container">
       <header className="navbar">
@@ -30,3 +30,5 @@ export default function Layout({ children, walletSlot }: LayoutProps) {
     </div>
   );
 }
+
+export default Layout;

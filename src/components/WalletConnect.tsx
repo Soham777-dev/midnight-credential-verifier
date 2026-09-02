@@ -14,7 +14,7 @@ interface WalletConnectProps {
  * Shows a spinner while connecting, the truncated address when connected,
  * and a plain "Connect" prompt otherwise.
  */
-export default function WalletConnect({
+export function WalletConnect({
   connected,
   address,
   connecting,
@@ -47,3 +47,5 @@ export default function WalletConnect({
     </button>
   );
 }
+
+export default WalletConnect;
