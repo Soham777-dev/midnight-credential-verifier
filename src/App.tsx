@@ -13,7 +13,9 @@ export default function App() {
         <WalletConnect
           connected={wallet.connected}
           address={wallet.address}
+          walletName={wallet.walletName}
           connecting={wallet.isConnecting}
+          availableWallets={wallet.availableWallets}
           onConnect={connect}
           onDisconnect={disconnect}
         />

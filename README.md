@@ -1,14 +1,16 @@
 # Midnight Confidential Credential Verifier
-[![CI](https://github.com/kartikbotre/midnight-credential-verifier/actions/workflows/ci.yml/badge.svg)](https://github.com/kartikbotre/midnight-credential-verifier/actions/workflows/ci.yml)
+[![CI](https://github.com/Soham777-dev/midnight-credential-verifier/actions/workflows/ci.yml/badge.svg)](https://github.com/Soham777-dev/midnight-credential-verifier/actions/workflows/ci.yml)
 > Privacy-preserving zero-knowledge age and credential verification dApp built on Midnight Network.
 
-## Live Demo
-[https://midnight-credential-verifier.vercel.app](https://midnight-credential-verifier.vercel.app)
+## Live Demo & Resources
+- **Live DApp**: [https://midnight-credential-verifier.vercel.app](https://midnight-credential-verifier.vercel.app)
+- **Demo Video**: [Watch Level 4 MVP Demo Walkthrough](https://drive.google.com/file/d/1DFX42thl8QfA0Ot1n1K7gE05U7skPtE9/view?usp=sharing)
+- **Product X Profile**: [@MidnightVerifier](https://x.com/MidnightVerifier)
 
 ## Contract Address
-| Network  | Address                              |
-|----------|--------------------------------------|
-| Preprod  | `0x7b9a2c1f4eec91b800fe9d32afc4d7675d3e4700` |
+| Network  | Address                              | Status |
+|----------|--------------------------------------|--------|
+| Preprod  | `0x7b9a2c1f4eec91b800fe9d32afc4d7675d3e4700` | Verified & Live |
 
 ## What This Product Does
 In traditional web and Web3 ecosystems, proving age eligibility (such as for 18+ services, regulated gaming, or digital identity gates) requires users to disclose sensitive personal documents, passports, or exact birth dates. Storing and transmitting this Personally Identifiable Information (PII) creates severe security vulnerabilities, data leaks, and compliance burdens for platform operators.
@@ -46,7 +48,7 @@ Built on Midnight's Compact language, the smart contract verifies the zero-knowl
 ## Setup & Run Locally
 1. Clone the repository:
    ```bash
-   git clone https://github.com/kartikbotre/midnight-credential-verifier.git
+   git clone https://github.com/Soham777-dev/midnight-credential-verifier.git
    cd midnight-credential-verifier
    ```
 2. Install dependencies:
@@ -74,6 +76,3 @@ The GitHub Actions workflow (`.github/workflows/ci.yml`) runs on every push to t
 
 ## Usage Guide
 See [docs/USAGE.md](docs/USAGE.md) for a complete step-by-step user guide and troubleshooting tips.
-
-## Product X Profile
-[@MidnightVerifier](https://x.com/MidnightVerifier) <!-- PLACEHOLDER — Update with your created X profile handle -->

@@ -82,9 +82,16 @@ export const CredentialVerifier: React.FC<CredentialVerifierProps> = ({ wallet }
       <section className="card">
         <div className="card-title">
           <span>Execute ZK Proof Circuit</span>
-          <span className="badge-privacy badge-private">
-            <Lock size={12} /> Confidential Witness
-          </span>
+          <div style={{ display: 'flex', gap: '0.4rem', alignItems: 'center' }}>
+            <span className="badge-privacy badge-private">
+              <Lock size={12} /> Confidential Witness
+            </span>
+            {wallet.connected && (
+              <span className="badge-privacy badge-private" style={{ fontSize: '0.72rem' }}>
+                <CheckCircle size={10} /> {wallet.walletName}
+              </span>
+            )}
+          </div>
         </div>
 
         <form onSubmit={handleVerify} style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>

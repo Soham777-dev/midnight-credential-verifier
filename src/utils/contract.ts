@@ -44,17 +44,20 @@ export async function promptWalletSignature(
     .join('');
 
   if (typeof walletApi.signData === 'function') {
-    try {
-      await walletApi.signData(hexData, { encoding: 'hex' });
-    } catch {
+    const attempts = [
+      () => walletApi.signData(hexData, { encoding: 'hex' }),
+      () => walletApi.signData(walletAddress, hexData),
+      () => walletApi.signData(rawText, { encoding: 'text' }),
+      () => walletApi.signData({ address: walletAddress, payload: hexData }),
+      () => walletApi.signData(walletAddress, { data: hexData, options: { encoding: 'hex' } }),
+    ];
+
+    for (const attempt of attempts) {
       try {
-        await walletApi.signData(rawText, { encoding: 'text' });
-      } catch {
-        try {
-          await walletApi.signData(walletAddress, { data: hexData, options: { encoding: 'hex' } });
-        } catch (e: any) {
-          console.warn('Wallet signData notice:', e.message);
-        }
+        await attempt();
+        return;
+      } catch (e: any) {
+        // Continue to next format
       }
     }
   } else if (typeof walletApi.balanceAndProveTx === 'function') {

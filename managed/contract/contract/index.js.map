@@ -1,0 +1,8 @@
+{
+  "version": 3,
+  "file": "index.js",
+  "sourceRoot": "../../../contracts/",
+  "sources": ["credential-verifier.compact"],
+  "names": [],
+  "mappings": ";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;EAQA;;;;;;;;;;MAKA,AAAA,iBAWC;;;;;cAVC,iBAAyB;cACzB,aAAqB;cACrB,gBAAyB;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;yCAFzB,iBAAyB,+BACzB,aAAqB,+BACrB,gBAAyB;;;;;;;;;mDAFzB,iBAAyB;mDACzB,aAAqB;mDACrB,gBAAyB;;;OAQ1B;MAED,AAAA,aAIC;;;;;cAJ4B,WAAmB;;;;;;;;;;;;;;;;;;yCAAnB,WAAmB;;;;;;;;;+CAAnB,WAAmB;;;OAI/C;;;;;;;;;;GAnBA;EAHD;;;;;UAAY,UAAmB;UAAE,eAAuB;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;IAJxD;;;;;;;;;yEAAuC;IACvC;;;;;;;;;yEAA0C;IAC1C;;;;;;;;;yEAAuC;IAGrC;;;;;;;2HAAyB,UAAQ;;yEAApB;IACb;;;;;;;2HAA0B,eAAa;;yEAAzB;;;;;;;GACf;EAED,AAAA,oBAWC;;uBAVC,iBAAyB;uBACzB,aAAqB;uBACrB,gBAAyB;;4BAElB,aAAW,IAAI,iBAAe;;QAC9B,GAA6D;4DAA5D,aAAW;;4DAAG,iBAAe;;oCAA7B,aAAW,GAAG,iBAAe;6BAA9B,GAA6D;;qDAAd;;;;;;;;;;;0HAAc;;UAEpE,KAAkB;IAAlB;;;;;;;;;;6FAAA,KAAkB;;;;wEAAA;;GAGnB;EAED,AAAA,gBAIC,4BAJ4B,WAAmB;4BACvC,WAAS;;4BACT,WAAS;;IAChB;;;;;;;2HAA0B,WAAS;;yEAArB;;GACf;;;;;;;;;;;;;;;;IA1BD;qCAAA;;;;;;;;;;;0GAAuC;KAAA;IACvC;qCAAA;;;;;;;;;;;0GAA0C;KAAA;IAC1C;qCAAA;;;;;;;;;;;0GAAuC;KAAA;;;;;;;;;;"
+}
