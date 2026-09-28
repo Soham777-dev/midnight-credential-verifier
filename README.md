@@ -5,7 +5,7 @@
 ## Live Demo & Resources
 - **Live DApp**: [https://midnight-credential-verifier.vercel.app](https://midnight-credential-verifier.vercel.app)
 - **Demo Video**: [Watch Level 4 MVP Demo Walkthrough](https://drive.google.com/file/d/1DFX42thl8QfA0Ot1n1K7gE05U7skPtE9/view?usp=sharing)
-- **Product X Profile**: [@MidnightVerifier](https://x.com/MidnightVerifier)
+- **Product Launch (X / Twitter)**: [@Sohamnighojkar Launch Post](https://x.com/Sohamnighojkar/status/2104545428167598091?s=20) (Profile: [@Sohamnighojkar](https://x.com/Sohamnighojkar))
 
 ## Contract Address & Deployment
 | Parameter | Value |

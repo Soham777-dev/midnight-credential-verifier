@@ -275,12 +275,12 @@ export function Layout({ children, walletSlot }: LayoutProps) {
               GitHub
             </a>
             <a
-              href="https://x.com/MidnightVerifier"
+              href="https://x.com/Sohamnighojkar/status/2104545428167598091?s=20"
               target="_blank"
               rel="noopener noreferrer"
               className="footer-link"
             >
-              @MidnightVerifier
+              @Sohamnighojkar (X)
             </a>
             <a
               href={`https://explorer.preprod.midnight.network/contract/${PREPROD_CONTRACT_ADDRESS}`}
