@@ -1,52 +1,93 @@
 /* ================================================================
-   Midnight Credential Verifier — Premium Dark UI Design System
+   Notion Design System: Midnight Confidential Credential Verifier
+   Specification: Notion-design-analysis (alpha) + design-taste-frontend
    ================================================================ */
 
-/* ---- Design Tokens ---- */
 :root {
-  --bg-dark: #060a14;
-  --bg-surface: #0c1222;
-  --bg-card: #111b30;
-  --bg-card-hover: #162040;
-  --bg-input: #0a0f1c;
-  --border-subtle: #1e2d4d;
-  --border-highlight: #2a3f6a;
-  --border-glow: rgba(6, 182, 212, 0.3);
+  /* Brand & Primary Colors */
+  --color-primary: #5645d4;
+  --color-primary-pressed: #4534b3;
+  --color-primary-deep: #3a2a99;
+  --color-on-primary: #ffffff;
 
-  --text-primary: #f0f4f8;
-  --text-secondary: #8b9dc3;
-  --text-muted: #5a6d8f;
+  --color-brand-navy: #0a1530;
+  --color-brand-navy-deep: #070f24;
+  --color-brand-navy-mid: #1a2a52;
 
-  --accent-primary: #06b6d4;
-  --accent-secondary: #3b82f6;
-  --accent-gradient: linear-gradient(135deg, #06b6d4, #3b82f6);
-  --accent-gradient-hover: linear-gradient(135deg, #0891b2, #2563eb);
-  --accent-emerald: #10b981;
-  --accent-amber: #f59e0b;
-  --accent-rose: #ef4444;
+  --color-link-blue: #0075de;
+  --color-link-blue-pressed: #005bab;
 
-  --badge-public-bg: rgba(59, 130, 246, 0.12);
-  --badge-public-text: #60a5fa;
-  --badge-public-border: rgba(59, 130, 246, 0.25);
+  /* Brand Accents */
+  --color-brand-orange: #dd5b00;
+  --color-brand-orange-deep: #793400;
+  --color-brand-pink: #ff64c8;
+  --color-brand-pink-deep: #a02e6d;
+  --color-brand-purple: #7b3ff2;
+  --color-brand-purple-300: #d6b6f6;
+  --color-brand-purple-800: #391c57;
+  --color-brand-teal: #2a9d99;
+  --color-brand-green: #1aae39;
+  --color-brand-yellow: #f5d75e;
+  --color-brand-brown: #523410;
 
-  --badge-private-bg: rgba(16, 185, 129, 0.12);
-  --badge-private-text: #34d399;
-  --badge-private-border: rgba(16, 185, 129, 0.25);
+  /* Pastel Feature Card Tints */
+  --color-card-tint-peach: #ffe8d4;
+  --color-card-tint-rose: #fde0ec;
+  --color-card-tint-mint: #d9f3e1;
+  --color-card-tint-lavender: #e6e0f5;
+  --color-card-tint-sky: #dcecfa;
+  --color-card-tint-yellow: #fef7d6;
+  --color-card-tint-yellow-bold: #f9e79f;
+  --color-card-tint-cream: #f8f5e8;
+  --color-card-tint-gray: #f0eeec;
 
-  --glow-cyan: 0 0 60px rgba(6, 182, 212, 0.15), 0 0 120px rgba(6, 182, 212, 0.05);
-  --shadow-card: 0 4px 24px rgba(0, 0, 0, 0.4), 0 1px 4px rgba(0, 0, 0, 0.2);
-  --shadow-hover: 0 8px 32px rgba(6, 182, 212, 0.12), 0 2px 8px rgba(0, 0, 0, 0.3);
+  /* Surfaces & Canvas */
+  --color-canvas: #ffffff;
+  --color-surface: #f6f5f4;
+  --color-surface-soft: #fafaf9;
+  --color-hairline: #e5e3df;
+  --color-hairline-soft: #ede9e4;
+  --color-hairline-strong: #c8c4be;
 
-  --font-sans: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+  /* Typography / Inks */
+  --color-ink-deep: #000000;
+  --color-ink: #1a1a1a;
+  --color-charcoal: #37352f;
+  --color-slate: #5d5b54;
+  --color-steel: #787671;
+  --color-stone: #a4a097;
+  --color-muted: #bbb8b1;
+  --color-on-dark: #ffffff;
+  --color-on-dark-muted: #a4a097;
 
+  /* Semantics */
+  --color-semantic-success: #1aae39;
+  --color-semantic-warning: #dd5b00;
+  --color-semantic-error: #e03131;
+
+  /* Radii Scale (Notion Sober-Editorial Geometry) */
+  --radius-xs: 4px;
   --radius-sm: 6px;
-  --radius-md: 10px;
-  --radius-lg: 14px;
-  --radius-xl: 18px;
+  --radius-md: 8px;     /* Rectangular buttons & inputs */
+  --radius-lg: 12px;    /* Cards, mockup containers */
+  --radius-xl: 16px;
+  --radius-xxl: 20px;
+  --radius-full: 9999px; /* Status tags & badges only */
+
+  /* Elevation Shadows */
+  --shadow-subtle: rgba(15, 15, 15, 0.04) 0px 1px 2px 0px;
+  --shadow-card: rgba(15, 15, 15, 0.08) 0px 4px 12px 0px;
+  --shadow-workspace-mockup: rgba(15, 15, 15, 0.20) 0px 24px 48px -8px;
+
+  /* Font Stack */
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, sans-serif;
+  --font-mono: 'JetBrains Mono', 'SF Mono', Consolas, monospace;
 }
 
-/* ---- Reset ---- */
+/* ================================================================
+   Base & Reset
+   ================================================================ */
+
 *, *::before, *::after {
   box-sizing: border-box;
   margin: 0;
@@ -54,582 +95,922 @@
 }
 
 body {
-  background-color: var(--bg-dark);
-  background-image:
-    radial-gradient(ellipse 80% 50% at 50% -20%, rgba(6, 182, 212, 0.08), transparent),
-    radial-gradient(ellipse 60% 40% at 80% 100%, rgba(59, 130, 246, 0.06), transparent);
-  color: var(--text-primary);
   font-family: var(--font-sans);
-  min-height: 100vh;
-  line-height: 1.6;
+  background-color: var(--color-surface);
+  color: var(--color-charcoal);
+  line-height: 1.55;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* ---- App Shell ---- */
+/* ================================================================
+   App Layout
+   ================================================================ */
+
 .app-container {
-  max-width: 1060px;
-  margin: 0 auto;
-  padding: 1.25rem 1.5rem 2rem;
+  min-height: 100dvh;
   display: flex;
   flex-direction: column;
-  gap: 1.25rem;
+  background-color: var(--color-canvas);
 }
 
-/* ---- Navbar ---- */
+/* Sticky Top Navigation Bar */
 .navbar {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  height: 64px;
+  background-color: var(--color-canvas);
+  border-bottom: 1px solid var(--color-hairline);
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  padding: 0.75rem 1.25rem;
-  background: var(--bg-card);
-  border: 1px solid var(--border-subtle);
-  border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-card);
-  flex-wrap: wrap;
-  gap: 0.75rem;
+  justify-content: space-between;
+  padding: 0 24px;
   backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.nav-left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
 }
 
 .logo-group {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
+  gap: 12px;
+  text-decoration: none;
 }
 
 .logo-img {
-  width: 40px;
-  height: 40px;
-  border-radius: var(--radius-md);
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-sm);
   object-fit: cover;
-  box-shadow: 0 0 12px rgba(6, 182, 212, 0.3);
-  border: 1px solid rgba(6, 182, 212, 0.25);
+  border: 1px solid var(--color-hairline);
 }
 
 .brand-title {
-  font-size: 1.15rem;
-  font-weight: 700;
-  letter-spacing: -0.02em;
-  color: var(--text-primary);
-  line-height: 1.2;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--color-ink);
+  letter-spacing: -0.2px;
 }
 
 .brand-accent {
-  background: var(--accent-gradient);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: var(--color-primary);
+  font-weight: 600;
 }
 
 .network-tag {
-  font-size: 0.68rem;
-  padding: 1px 7px;
-  background: rgba(245, 158, 11, 0.12);
-  color: var(--accent-amber);
-  border: 1px solid rgba(245, 158, 11, 0.25);
-  border-radius: 10px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
   font-weight: 600;
-  letter-spacing: 0.02em;
-  text-transform: uppercase;
+  padding: 2px 8px;
+  border-radius: var(--radius-sm);
+  background-color: var(--color-card-tint-mint);
+  color: var(--color-brand-green);
+  letter-spacing: 0.2px;
 }
 
-/* ---- Hero Banner ---- */
-.hero-banner {
+.network-tag::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: var(--color-brand-green);
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.nav-link {
+  font-size: 14px;
+  color: var(--color-slate);
+  text-decoration: none;
+  font-weight: 400;
+  transition: color 0.15s ease;
+}
+
+.nav-link:hover {
+  color: var(--color-ink);
+}
+
+/* ================================================================
+   Hero Band (Deep Navy with Scattered Dots & Mesh Wires)
+   ================================================================ */
+
+.hero-band-dark {
   position: relative;
-  text-align: center;
-  padding: 2.5rem 2rem 2rem;
-  background: var(--bg-card);
-  border: 1px solid var(--border-subtle);
-  border-radius: var(--radius-xl);
-  box-shadow: var(--shadow-card);
+  background-color: var(--color-brand-navy);
+  color: var(--color-on-dark);
+  padding: 72px 24px 140px;
   overflow: hidden;
+  text-align: center;
 }
 
-.hero-glow {
+/* Scattered Brand Decorative Dots */
+.hero-dot {
   position: absolute;
-  top: -80px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 400px;
-  height: 200px;
-  background: radial-gradient(ellipse, rgba(6, 182, 212, 0.15), transparent 70%);
+  border-radius: 50%;
   pointer-events: none;
+  opacity: 0.85;
+}
+
+.dot-1 {
+  width: 14px;
+  height: 14px;
+  background-color: var(--color-brand-pink);
+  top: 40px;
+  left: 12%;
+}
+
+.dot-2 {
+  width: 10px;
+  height: 10px;
+  background-color: var(--color-brand-yellow);
+  top: 70px;
+  right: 15%;
+}
+
+.dot-3 {
+  width: 18px;
+  height: 18px;
+  background-color: var(--color-brand-teal);
+  bottom: 120px;
+  left: 8%;
+}
+
+.dot-4 {
+  width: 12px;
+  height: 12px;
+  background-color: var(--color-primary);
+  bottom: 150px;
+  right: 10%;
+}
+
+.dot-5 {
+  width: 8px;
+  height: 8px;
+  background-color: var(--color-brand-orange);
+  top: 130px;
+  left: 22%;
+}
+
+/* Mesh Wire Decorative SVGs */
+.hero-mesh-svg {
+  position: absolute;
+  pointer-events: none;
+  opacity: 0.15;
+}
+
+.mesh-left {
+  top: 20px;
+  left: 4%;
+  width: 140px;
+}
+
+.mesh-right {
+  top: 40px;
+  right: 4%;
+  width: 160px;
+}
+
+.hero-content {
+  position: relative;
+  max-width: 860px;
+  margin: 0 auto;
+  z-index: 2;
+}
+
+.hero-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 12px;
+  border-radius: var(--radius-full);
+  background-color: rgba(255, 255, 255, 0.1);
+  color: var(--color-card-tint-lavender);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
 }
 
 .hero-title {
-  font-size: 1.6rem;
-  font-weight: 800;
-  letter-spacing: -0.03em;
-  margin-bottom: 0.5rem;
-  background: linear-gradient(135deg, #f0f4f8 30%, #06b6d4 70%, #3b82f6);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  font-size: 52px;
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: -1.5px;
+  color: var(--color-on-dark);
+  margin-bottom: 16px;
 }
 
 .hero-subtitle {
-  color: var(--text-secondary);
-  font-size: 0.92rem;
-  max-width: 540px;
-  margin: 0 auto 1.5rem;
+  font-size: 18px;
+  font-weight: 400;
   line-height: 1.5;
+  color: var(--color-on-dark-muted);
+  max-width: 620px;
+  margin: 0 auto 28px;
 }
 
-.hero-stats {
+.hero-actions {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 1.5rem;
+  gap: 12px;
+  margin-bottom: 36px;
 }
 
-.hero-stat {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.15rem;
-}
-
-.hero-stat-value {
-  font-size: 1.1rem;
-  font-weight: 700;
-  color: var(--accent-primary);
-  font-family: var(--font-mono);
-}
-
-.hero-stat-label {
-  font-size: 0.72rem;
-  color: var(--text-muted);
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-  font-weight: 500;
-}
-
-.hero-stat-divider {
-  width: 1px;
-  height: 32px;
-  background: var(--border-subtle);
-}
-
-/* ---- Privacy Legend Banner ---- */
-.privacy-banner {
-  background: var(--bg-card);
-  border: 1px solid var(--border-subtle);
-  border-radius: var(--radius-lg);
-  padding: 0.75rem 1.25rem;
-  display: flex;
-  gap: 1.25rem;
-  align-items: center;
-  flex-wrap: wrap;
-  box-shadow: var(--shadow-card);
-}
-
-.privacy-banner-title {
-  font-size: 0.78rem;
-  font-weight: 600;
-  color: var(--text-muted);
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-}
-
-.privacy-pills {
-  display: flex;
-  gap: 0.75rem;
-  flex-wrap: wrap;
-}
-
-.badge-privacy {
+/* Quick Metrics Row */
+.hero-stats-row {
   display: inline-flex;
   align-items: center;
-  gap: 0.35rem;
-  padding: 0.2rem 0.55rem;
-  border-radius: var(--radius-sm);
-  font-size: 0.74rem;
-  font-weight: 600;
+  gap: 24px;
+  padding: 10px 24px;
+  background-color: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-md);
 }
 
-.badge-public {
-  background: var(--badge-public-bg);
-  color: var(--badge-public-text);
-  border: 1px solid var(--badge-public-border);
-}
-
-.badge-private {
-  background: var(--badge-private-bg);
-  color: var(--badge-private-text);
-  border: 1px solid var(--badge-private-border);
-}
-
-/* ---- Grid Layout ---- */
-.main-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1.25rem;
-}
-
-/* ---- Cards ---- */
-.card {
-  background: var(--bg-card);
-  border: 1px solid var(--border-subtle);
-  border-radius: var(--radius-lg);
-  padding: 1.5rem;
+.stat-item {
   display: flex;
   flex-direction: column;
-  gap: 1.25rem;
-  box-shadow: var(--shadow-card);
-  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  align-items: center;
 }
 
-.card:hover {
-  border-color: var(--border-highlight);
-  box-shadow: var(--shadow-hover);
-}
-
-.card-title {
-  font-size: 1.05rem;
+.stat-val {
+  font-size: 18px;
   font-weight: 600;
+  color: var(--color-on-dark);
+}
+
+.stat-lbl {
+  font-size: 12px;
+  color: var(--color-on-dark-muted);
+}
+
+.stat-divider {
+  width: 1px;
+  height: 24px;
+  background-color: rgba(255, 255, 255, 0.15);
+}
+
+/* ================================================================
+   Notion Buttons (Rectangles: rounded-md 8px, NOT pills)
+   ================================================================ */
+
+.button-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background-color: var(--color-primary);
+  color: var(--color-on-primary);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.3;
+  padding: 10px 18px;
+  border-radius: var(--radius-md);
+  border: 1px solid transparent;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background-color 0.15s ease, transform 0.05s ease;
+}
+
+.button-primary:hover {
+  background-color: var(--color-primary-pressed);
+}
+
+.button-primary:active {
+  background-color: var(--color-primary-deep);
+  transform: translateY(1px);
+}
+
+.button-secondary-on-dark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background-color: transparent;
+  color: var(--color-on-dark);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.3;
+  padding: 10px 18px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-on-dark-muted);
+  cursor: pointer;
+  text-decoration: none;
+  transition: background-color 0.15s ease, border-color 0.15s ease;
+}
+
+.button-secondary-on-dark:hover {
+  background-color: rgba(255, 255, 255, 0.08);
+  border-color: var(--color-on-dark);
+}
+
+.button-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background-color: transparent;
+  color: var(--color-ink);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.3;
+  padding: 10px 18px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-hairline-strong);
+  cursor: pointer;
+  text-decoration: none;
+  transition: background-color 0.15s ease;
+}
+
+.button-secondary:hover {
+  background-color: var(--color-surface);
+}
+
+.button-link {
+  background: transparent;
+  border: none;
+  color: var(--color-link-blue);
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.button-link:hover {
+  color: var(--color-link-blue-pressed);
+  text-decoration: underline;
+}
+
+/* ================================================================
+   Workspace Mockup Card (Breaks out of hero with deep shadow)
+   ================================================================ */
+
+.workspace-mockup-wrapper {
+  max-width: 1140px;
+  margin: -90px auto 48px;
+  padding: 0 20px;
+  position: relative;
+  z-index: 10;
+}
+
+.workspace-mockup-card {
+  background-color: var(--color-canvas);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-hairline);
+  box-shadow: var(--shadow-workspace-mockup);
+  overflow: hidden;
+}
+
+/* Notion Window Chrome */
+.mockup-header {
+  height: 44px;
+  background-color: var(--color-surface);
+  border-bottom: 1px solid var(--color-hairline);
   display: flex;
   align-items: center;
   justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 0.4rem;
+  padding: 0 16px;
 }
 
-/* ---- Forms ---- */
+.mockup-breadcrumbs {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--color-steel);
+}
+
+.mockup-badge {
+  font-size: 11px;
+  font-weight: 600;
+  padding: 2px 6px;
+  border-radius: var(--radius-xs);
+  background-color: var(--color-card-tint-lavender);
+  color: var(--color-brand-purple-800);
+}
+
+.mockup-window-controls {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.control-circle {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.circle-close { background-color: #ff5f56; }
+.circle-min { background-color: #ffbd2e; }
+.circle-max { background-color: #27c93f; }
+
+/* Mockup Content Body */
+.mockup-body {
+  padding: 24px;
+  background-color: var(--color-canvas);
+}
+
+/* ================================================================
+   Interactive Credential Verifier Layout inside Mockup
+   ================================================================ */
+
+.verifier-grid {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 24px;
+}
+
+.verifier-panel {
+  background-color: var(--color-canvas);
+  border: 1px solid var(--color-hairline);
+  border-radius: var(--radius-md);
+  padding: 24px;
+}
+
+.panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--color-hairline-soft);
+}
+
+.panel-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--color-ink);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Form Inputs in Notion Style */
 .form-group {
   display: flex;
   flex-direction: column;
-  gap: 0.35rem;
+  gap: 6px;
+  margin-bottom: 16px;
 }
 
 .form-label {
-  font-size: 0.82rem;
-  color: var(--text-secondary);
+  font-size: 13px;
   font-weight: 500;
+  color: var(--color-charcoal);
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
 }
 
 .form-input {
   width: 100%;
-  background: var(--bg-input);
-  border: 1px solid var(--border-subtle);
+  height: 42px;
+  padding: 8px 12px;
+  background-color: var(--color-canvas);
+  border: 1px solid var(--color-hairline-strong);
   border-radius: var(--radius-md);
-  padding: 0.6rem 0.85rem;
-  color: var(--text-primary);
-  font-size: 0.92rem;
   font-family: var(--font-sans);
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  font-size: 14px;
+  color: var(--color-ink);
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
 }
 
 .form-input:focus {
   outline: none;
-  border-color: var(--accent-primary);
-  box-shadow: 0 0 0 3px rgba(6, 182, 212, 0.12);
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 2px rgba(86, 69, 212, 0.15);
 }
 
-.form-input:disabled {
-  opacity: 0.6;
+.input-hint {
+  font-size: 12px;
+  color: var(--color-steel);
 }
 
-/* ---- Buttons ---- */
-.submit-btn {
-  background: var(--accent-gradient);
-  color: #fff;
-  border: none;
-  border-radius: var(--radius-md);
-  padding: 0.75rem 1.25rem;
-  font-weight: 600;
-  font-size: 0.92rem;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.6rem;
-  transition: all 0.2s ease;
-  width: 100%;
-  position: relative;
-  overflow: hidden;
-}
-
-.submit-btn::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: var(--accent-gradient-hover);
-  opacity: 0;
-  transition: opacity 0.2s ease;
-}
-
-.submit-btn:hover:not(:disabled)::before {
-  opacity: 1;
-}
-
-.submit-btn:hover:not(:disabled) {
-  transform: translateY(-1px);
-  box-shadow: 0 4px 16px rgba(6, 182, 212, 0.3);
-}
-
-.submit-btn:active:not(:disabled) {
-  transform: translateY(0);
-}
-
-.submit-btn:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-}
-
-.submit-btn > * {
-  position: relative;
-  z-index: 1;
-}
-
-.wallet-btn {
-  background: var(--accent-secondary);
-  color: #fff;
-  border: none;
-  padding: 0.45rem 1rem;
-  border-radius: var(--radius-md);
-  font-weight: 600;
-  cursor: pointer;
+/* Status Badges */
+.badge-tag-purple {
   display: inline-flex;
   align-items: center;
-  gap: 0.45rem;
-  transition: all 0.2s ease;
-  font-size: 0.85rem;
+  gap: 4px;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 3px 8px;
+  border-radius: var(--radius-sm);
+  background-color: var(--color-card-tint-lavender);
+  color: var(--color-brand-purple-800);
 }
 
-.wallet-btn:hover {
-  background: #2563eb;
-  box-shadow: 0 2px 12px rgba(59, 130, 246, 0.3);
+.badge-tag-green {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 3px 8px;
+  border-radius: var(--radius-sm);
+  background-color: var(--color-card-tint-mint);
+  color: var(--color-brand-green);
 }
 
-.wallet-btn.connected {
-  background: rgba(16, 185, 129, 0.08);
-  color: var(--accent-emerald);
-  border: 1px solid var(--badge-private-border);
+.badge-tag-orange {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 3px 8px;
+  border-radius: var(--radius-sm);
+  background-color: var(--color-card-tint-peach);
+  color: var(--color-brand-orange-deep);
 }
 
-/* ---- Spinner ---- */
-.spinner {
-  width: 16px;
-  height: 16px;
-  border: 2px solid rgba(255, 255, 255, 0.2);
-  border-top-color: #ffffff;
-  border-radius: 50%;
-  animation: spin 0.7s linear infinite;
-}
-
-@keyframes spin {
-  to { transform: rotate(360deg); }
-}
-
-/* ---- Proof Stepper ---- */
-.stepper-container {
-  background: var(--bg-input);
-  border: 1px solid var(--border-subtle);
-  border-radius: var(--radius-md);
-  padding: 1rem;
+/* State Key-Value Table */
+.state-table {
   display: flex;
   flex-direction: column;
-  gap: 0.55rem;
+  gap: 12px;
 }
 
-.step-item {
-  display: flex;
-  align-items: center;
-  gap: 0.55rem;
-  font-size: 0.82rem;
-  color: var(--text-muted);
-  transition: color 0.3s ease;
-}
-
-.step-item.active {
-  color: var(--accent-amber);
-  font-weight: 500;
-}
-
-.step-item.completed {
-  color: var(--accent-emerald);
-}
-
-/* ---- Ledger State ---- */
 .state-row {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  padding: 0.55rem 0;
-  border-bottom: 1px solid rgba(30, 45, 77, 0.5);
-  font-size: 0.88rem;
-}
-
-.state-row:last-child {
-  border-bottom: none;
+  justify-content: space-between;
+  padding: 10px 14px;
+  background-color: var(--color-surface);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-hairline-soft);
+  font-size: 13px;
 }
 
 .state-label {
-  color: var(--text-secondary);
+  color: var(--color-steel);
+  font-weight: 500;
 }
 
 .state-value {
+  color: var(--color-ink);
+  font-weight: 600;
   font-family: var(--font-mono);
-  font-weight: 500;
-  color: var(--text-primary);
-  font-size: 0.85rem;
 }
 
-/* ---- Alert Boxes ---- */
-.alert-box {
-  padding: 0.85rem 1rem;
+/* Proof Result Container */
+.proof-result-card {
+  margin-top: 18px;
+  padding: 16px;
   border-radius: var(--radius-md);
-  font-size: 0.85rem;
+  background-color: var(--color-card-tint-mint);
+  border: 1px solid #bfe7cc;
+  color: var(--color-charcoal);
+}
+
+.proof-result-title {
   display: flex;
-  align-items: flex-start;
-  gap: 0.6rem;
+  align-items: center;
+  gap: 6px;
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--color-brand-green);
+  margin-bottom: 8px;
+}
+
+.proof-hash-box {
+  background-color: rgba(255, 255, 255, 0.7);
+  padding: 8px 12px;
+  border-radius: var(--radius-sm);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  word-break: break-all;
+  margin-top: 6px;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+/* ================================================================
+   High-Emphasis Yellow Feature Banner
+   ================================================================ */
+
+.banner-section {
+  max-width: 1140px;
+  margin: 0 auto 48px;
+  padding: 0 20px;
+}
+
+.card-feature-yellow-bold {
+  background-color: var(--color-card-tint-yellow-bold);
+  color: var(--color-charcoal);
+  border-radius: var(--radius-lg);
+  padding: 28px 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid #ebd982;
+}
+
+.banner-text-group h3 {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 4px;
+  color: var(--color-charcoal);
+}
+
+.banner-text-group p {
+  font-size: 14px;
+  color: var(--color-slate);
+}
+
+.banner-contract-code {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  background-color: rgba(0, 0, 0, 0.06);
+  padding: 4px 10px;
+  border-radius: var(--radius-sm);
+  margin-top: 6px;
+}
+
+/* ================================================================
+   Pastel Feature Cards Grid (Notion Database Properties)
+   ================================================================ */
+
+.features-section {
+  max-width: 1140px;
+  margin: 0 auto 64px;
+  padding: 0 20px;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 36px;
+}
+
+.section-title {
+  font-size: 32px;
+  font-weight: 600;
+  letter-spacing: -0.5px;
+  color: var(--color-ink);
+  margin-bottom: 8px;
+}
+
+.section-subtitle {
+  font-size: 16px;
+  color: var(--color-steel);
+  max-width: 580px;
+  margin: 0 auto;
+}
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+
+.pastel-card {
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 220px;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.pastel-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-card);
+}
+
+.card-peach {
+  background-color: var(--color-card-tint-peach);
+  border: 1px solid #f2d4bd;
+}
+
+.card-mint {
+  background-color: var(--color-card-tint-mint);
+  border: 1px solid #c2e8cd;
+}
+
+.card-sky {
+  background-color: var(--color-card-tint-sky);
+  border: 1px solid #c8ddf0;
+}
+
+.card-lavender {
+  background-color: var(--color-card-tint-lavender);
+  border: 1px solid #d4ccee;
+}
+
+.card-icon-pill {
+  width: 38px;
+  height: 38px;
+  border-radius: var(--radius-md);
+  background-color: rgba(255, 255, 255, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 14px;
+}
+
+.card-heading {
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--color-charcoal);
+  margin-bottom: 6px;
+}
+
+.card-desc {
+  font-size: 13px;
+  color: var(--color-slate);
   line-height: 1.45;
 }
 
-.alert-error {
-  background: rgba(239, 68, 68, 0.1);
-  color: #fca5a5;
-  border: 1px solid rgba(239, 68, 68, 0.25);
+/* ================================================================
+   Notion Footer
+   ================================================================ */
+
+.footer-region {
+  background-color: var(--color-canvas);
+  border-top: 1px solid var(--color-hairline);
+  padding: 40px 24px 32px;
+  margin-top: auto;
 }
 
-.alert-success {
-  background: rgba(16, 185, 129, 0.1);
-  color: #6ee7b7;
-  border: 1px solid rgba(16, 185, 129, 0.25);
-}
-
-.proof-output {
-  background: var(--bg-dark);
-  border: 1px solid var(--border-subtle);
-  border-radius: var(--radius-md);
-  padding: 0.7rem;
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  word-break: break-all;
-  color: var(--accent-primary);
-  margin-top: 0.4rem;
-}
-
-/* ---- Footer ---- */
-.app-footer {
+.footer-content {
+  max-width: 1140px;
+  margin: 0 auto;
   display: flex;
+  align-items: center;
   justify-content: space-between;
-  align-items: center;
-  padding: 1rem 1.25rem;
-  font-size: 0.78rem;
-  color: var(--text-muted);
-  border-top: 1px solid var(--border-subtle);
-  margin-top: 0.5rem;
-  flex-wrap: wrap;
-  gap: 0.5rem;
+  font-size: 13px;
+  color: var(--color-steel);
 }
 
-.app-footer strong {
-  color: var(--accent-primary);
-  font-weight: 600;
-}
-
-.footer-links {
+.footer-links-group {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 20px;
 }
 
-.footer-links a {
-  color: var(--text-secondary);
+.footer-link {
+  color: var(--color-steel);
   text-decoration: none;
-  transition: color 0.2s ease;
+  transition: color 0.15s ease;
 }
 
-.footer-links a:hover {
-  color: var(--accent-primary);
+.footer-link:hover {
+  color: var(--color-ink);
 }
 
-.footer-dot {
-  color: var(--text-muted);
-}
+/* ================================================================
+   Responsive Breakpoints
+   ================================================================ */
 
-/* ---- Responsive ---- */
-@media (max-width: 768px) {
-  .main-grid {
+@media (max-width: 1024px) {
+  .features-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .verifier-grid {
     grid-template-columns: 1fr;
   }
+}
 
-  .app-container {
-    padding: 0.75rem;
+@media (max-width: 768px) {
+  .navbar {
+    padding: 0 16px;
   }
 
-  .hero-banner {
-    padding: 1.75rem 1.25rem 1.5rem;
+  .nav-links {
+    display: none;
+  }
+
+  .hero-band-dark {
+    padding: 48px 16px 110px;
   }
 
   .hero-title {
-    font-size: 1.3rem;
+    font-size: 34px;
   }
 
-  .hero-stats {
-    gap: 1rem;
+  .hero-subtitle {
+    font-size: 15px;
   }
 
-  .hero-stat-value {
-    font-size: 0.95rem;
-  }
-
-  .navbar {
-    padding: 0.6rem 1rem;
-  }
-
-  .brand-title {
-    font-size: 1rem;
-  }
-
-  .app-footer {
+  .hero-stats-row {
     flex-direction: column;
+    gap: 12px;
+  }
+
+  .stat-divider {
+    display: none;
+  }
+
+  .features-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .card-feature-yellow-bold {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  .footer-content {
+    flex-direction: column;
+    gap: 16px;
     text-align: center;
   }
 }
 
-@media (max-width: 480px) {
-  .hero-stats {
-    flex-direction: column;
-    gap: 0.75rem;
-  }
+/* ================================================================
+   Interactive States & Helper Classes
+   ================================================================ */
 
-  .hero-stat-divider {
-    display: none;
-  }
-
-  .privacy-banner {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.5rem;
-  }
+.stepper-box {
+  margin-top: 16px;
+  padding: 14px 16px;
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-hairline);
+  border-radius: var(--radius-md);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
-/* ---- Utility Animation ---- */
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(8px); }
-  to   { opacity: 1; transform: translateY(0); }
+.step-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+  color: var(--color-stone);
+  transition: color 0.2s ease;
 }
 
-.card {
-  animation: fadeIn 0.4s ease-out;
+.step-active {
+  color: var(--color-primary);
+  font-weight: 500;
 }
 
-/* ---- Scrollbar ---- */
-::-webkit-scrollbar {
-  width: 6px;
+.spin-icon {
+  animation: spin 1s linear infinite;
+  color: var(--color-primary);
 }
-::-webkit-scrollbar-track {
-  background: var(--bg-dark);
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
 }
-::-webkit-scrollbar-thumb {
-  background: var(--border-subtle);
-  border-radius: 3px;
+
+.alert-box-error {
+  margin-top: 16px;
+  padding: 14px 16px;
+  background-color: var(--color-card-tint-rose);
+  border: 1px solid #f9cad9;
+  border-radius: var(--radius-md);
+  color: var(--color-semantic-error);
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
-::-webkit-scrollbar-thumb:hover {
-  background: var(--border-highlight);
+
+.privacy-guarantee-box {
+  margin-top: 18px;
+  padding: 16px;
+  background-color: var(--color-card-tint-cream);
+  border: 1px solid #ebd982;
+  border-radius: var(--radius-md);
+}
+
+.privacy-guarantee-title {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-charcoal);
+  margin-bottom: 8px;
+}
+
+.privacy-guarantee-list {
+  padding-left: 18px;
+  font-size: 12px;
+  color: var(--color-slate);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  line-height: 1.45;
 }

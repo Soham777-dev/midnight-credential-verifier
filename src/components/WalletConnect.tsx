@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Wallet, ChevronDown, Check, LogOut } from 'lucide-react';
+import { Wallet, ChevronDown, Check, LogOut, CheckCircle2 } from 'lucide-react';
 import { DiscoveredWallet } from '../hooks/useMidnight';
 
 interface WalletConnectProps {
@@ -13,8 +13,11 @@ interface WalletConnectProps {
 }
 
 /**
- * WalletConnect — header component that drives the 1AM Wallet / Midnight DApp connector flow.
- * Supports auto-detecting 1AM Wallet and other Midnight-compatible wallets.
+ * WalletConnect: Header component adhering to the Notion Design System.
+ * - 8px rectangular button geometry (button-primary in #5645d4)
+ * - Clear active states and accessible contrast
+ * - Multi-wallet dropdown (1AM Wallet, Lace, etc.)
+ * - Zero em-dashes throughout
  */
 export function WalletConnect({
   connected,
@@ -42,28 +45,48 @@ export function WalletConnect({
   if (connected) {
     const shortAddress = address ? `${address.substring(0, 10)}...${address.substring(address.length - 8)}` : '';
     return (
-      <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-        <div className="wallet-btn connected" style={{ cursor: 'default' }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+        <div
+          style={{
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: '8px',
+            padding: '8px 14px',
+            backgroundColor: 'var(--color-card-tint-mint)',
+            border: '1px solid #c2e8cd',
+            borderRadius: 'var(--radius-md)',
+            fontSize: '13px',
+          }}
+        >
           <span
             style={{
               width: 8,
               height: 8,
               borderRadius: '50%',
-              background: 'var(--accent-emerald)',
+              backgroundColor: 'var(--color-brand-green)',
               display: 'inline-block',
             }}
           />
-          <span style={{ fontWeight: 600, color: 'var(--accent-emerald)' }}>{walletName || '1AM Wallet'}</span>
-          <span style={{ fontSize: '0.8rem', color: 'var(--text-secondary)' }}>({shortAddress})</span>
+          <span style={{ fontWeight: 600, color: 'var(--color-brand-green)' }}>
+            {walletName || '1AM Wallet'}
+          </span>
+          <span style={{ fontSize: '12px', color: 'var(--color-slate)', fontFamily: 'var(--font-mono)' }}>
+            ({shortAddress})
+          </span>
         </div>
         <button
           onClick={onDisconnect}
-          className="wallet-btn"
           style={{
-            background: 'transparent',
-            border: '1px solid var(--border-subtle)',
-            color: 'var(--text-muted)',
-            padding: '0.5rem 0.75rem',
+            display: 'inline-flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            height: '38px',
+            padding: '0 12px',
+            backgroundColor: 'transparent',
+            border: '1px solid var(--color-hairline-strong)',
+            borderRadius: 'var(--radius-md)',
+            color: 'var(--color-slate)',
+            cursor: 'pointer',
           }}
           title="Disconnect Wallet"
           aria-label="Disconnect wallet"
@@ -81,20 +104,36 @@ export function WalletConnect({
       <div style={{ display: 'flex', alignItems: 'center' }}>
         <button
           id="connect-wallet-btn"
-          className="wallet-btn"
+          className="button-primary"
           onClick={() => onConnect('1am')}
           disabled={connecting}
           aria-label="Connect 1AM Wallet"
-          style={{ borderTopRightRadius: hasMultiple ? 0 : 8, borderBottomRightRadius: hasMultiple ? 0 : 8 }}
+          style={{
+            borderTopRightRadius: hasMultiple ? 0 : 'var(--radius-md)',
+            borderBottomRightRadius: hasMultiple ? 0 : 'var(--radius-md)',
+            height: '38px',
+            padding: '8px 16px',
+            fontSize: '13px',
+          }}
         >
           {connecting ? (
             <>
-              <div className="spinner" style={{ width: 14, height: 14 }} aria-hidden="true" />
-              <span>Connecting 1AM Wallet…</span>
+              <div
+                style={{
+                  width: 14,
+                  height: 14,
+                  borderRadius: '50%',
+                  border: '2px solid rgba(255,255,255,0.3)',
+                  borderTopColor: '#ffffff',
+                  animation: 'spin 0.8s linear infinite',
+                }}
+                aria-hidden="true"
+              />
+              <span>Connecting 1AM Wallet...</span>
             </>
           ) : (
             <>
-              <Wallet size={16} aria-hidden="true" />
+              <Wallet size={15} aria-hidden="true" />
               <span>Connect 1AM Wallet</span>
             </>
           )}
@@ -102,12 +141,13 @@ export function WalletConnect({
 
         {hasMultiple && (
           <button
-            className="wallet-btn"
+            className="button-primary"
             style={{
-              padding: '0.5rem 0.5rem',
-              borderLeft: '1px solid rgba(255,255,255,0.2)',
+              padding: '8px 10px',
+              borderLeft: '1px solid rgba(255,255,255,0.25)',
               borderTopLeftRadius: 0,
               borderBottomLeftRadius: 0,
+              height: '38px',
             }}
             onClick={() => setDropdownOpen((prev) => !prev)}
             title="Choose Wallet"
@@ -125,19 +165,19 @@ export function WalletConnect({
             position: 'absolute',
             top: 'calc(100% + 6px)',
             right: 0,
-            background: 'var(--bg-card)',
-            border: '1px solid var(--border-subtle)',
-            borderRadius: '8px',
-            boxShadow: '0 8px 24px rgba(0,0,0,0.5)',
+            backgroundColor: 'var(--color-canvas)',
+            border: '1px solid var(--color-hairline)',
+            borderRadius: 'var(--radius-md)',
+            boxShadow: 'var(--shadow-card)',
             zIndex: 100,
             minWidth: '220px',
-            padding: '0.5rem',
+            padding: '6px',
             display: 'flex',
             flexDirection: 'column',
-            gap: '0.25rem',
+            gap: '4px',
           }}
         >
-          <div style={{ fontSize: '0.75rem', fontWeight: 600, color: 'var(--text-muted)', padding: '0.25rem 0.5rem' }}>
+          <div style={{ fontSize: '11px', fontWeight: 600, color: 'var(--color-steel)', padding: '4px 8px', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
             Detected Midnight Wallets
           </div>
           {availableWallets.map((w) => (
@@ -150,32 +190,34 @@ export function WalletConnect({
               style={{
                 background: 'transparent',
                 border: 'none',
-                color: 'var(--text-primary)',
-                padding: '0.5rem',
-                borderRadius: '6px',
+                color: 'var(--color-charcoal)',
+                padding: '8px 10px',
+                borderRadius: 'var(--radius-sm)',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'space-between',
                 width: '100%',
                 cursor: 'pointer',
                 textAlign: 'left',
-                fontSize: '0.85rem',
+                fontSize: '13px',
+                transition: 'background-color 0.15s ease',
               }}
-              onMouseEnter={(e) => (e.currentTarget.style.background = 'var(--bg-card-hover)')}
-              onMouseLeave={(e) => (e.currentTarget.style.background = 'transparent')}
+              onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = 'var(--color-surface)')}
+              onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = 'transparent')}
             >
-              <span style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                <Wallet size={14} color="var(--accent-blue)" />
+              <span style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                <Wallet size={14} color="var(--color-primary)" />
                 {w.name}
               </span>
               {w.id.includes('1am') && (
                 <span
                   style={{
-                    fontSize: '0.7rem',
-                    color: 'var(--accent-emerald)',
-                    background: 'var(--badge-private-bg)',
+                    fontSize: '11px',
+                    fontWeight: 600,
+                    color: 'var(--color-brand-green)',
+                    backgroundColor: 'var(--color-card-tint-mint)',
                     padding: '2px 6px',
-                    borderRadius: '4px',
+                    borderRadius: 'var(--radius-xs)',
                   }}
                 >
                   Primary
