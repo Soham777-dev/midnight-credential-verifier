@@ -1,6 +1,6 @@
 import { CredentialVerifierContract, VerificationResult } from '../../managed/contract/index.js';
 
-export const PREPROD_CONTRACT_ADDRESS = '0x7b9a2c1f4eec91b800fe9d32afc4d7675d3e4700';
+export const PREPROD_CONTRACT_ADDRESS = 'ba24c6846abeab7ec401ce86bf4598372a59f7d1d0c91bca9372aa2649e8ec64';
 
 export interface LedgerState {
   minRequiredAge: number;

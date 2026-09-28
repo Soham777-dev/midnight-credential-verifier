@@ -231,7 +231,15 @@ export const CredentialVerifier: React.FC<CredentialVerifierProps> = ({ wallet }
           <div className="state-row">
             <span className="state-label">Contract Address:</span>
             <span className="state-value" style={{ fontSize: '0.78rem' }}>
-              {PREPROD_CONTRACT_ADDRESS.substring(0, 14)}...{PREPROD_CONTRACT_ADDRESS.substring(34)}
+              <a
+                href={`https://explorer.preprod.midnight.network/contract/${PREPROD_CONTRACT_ADDRESS}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ color: 'var(--accent-primary)', textDecoration: 'none' }}
+                title="View on Midnight Preprod Explorer"
+              >
+                {PREPROD_CONTRACT_ADDRESS.substring(0, 10)}...{PREPROD_CONTRACT_ADDRESS.substring(PREPROD_CONTRACT_ADDRESS.length - 8)} ↗
+              </a>
             </span>
           </div>
           <div className="state-row">

@@ -7,10 +7,15 @@
 - **Demo Video**: [Watch Level 4 MVP Demo Walkthrough](https://drive.google.com/file/d/1DFX42thl8QfA0Ot1n1K7gE05U7skPtE9/view?usp=sharing)
 - **Product X Profile**: [@MidnightVerifier](https://x.com/MidnightVerifier)
 
-## Contract Address
-| Network  | Address                              | Status |
-|----------|--------------------------------------|--------|
-| Preprod  | `0x7b9a2c1f4eec91b800fe9d32afc4d7675d3e4700` | Verified & Live |
+## Contract Address & Deployment
+| Parameter | Value |
+|-----------|-------|
+| **Network** | Midnight Preprod |
+| **Contract Address** | [`ba24c6846abeab7ec401ce86bf4598372a59f7d1d0c91bca9372aa2649e8ec64`](https://explorer.preprod.midnight.network/contract/ba24c6846abeab7ec401ce86bf4598372a59f7d1d0c91bca9372aa2649e8ec64) |
+| **Deploy Tx Hash** | `4d2153aa140d9c81dabd9cdad1748dc7bf71d6eb7e1ecd1663774b5b63c60743` |
+| **Deploy Block** | `2,745,227` |
+| **Deployer Address** | `mn_addr_preprod1z98vzn0mmc8u57q9eu24mctufk5u56sxnc3yle7mhfjs03yypjtq7llaed` |
+| **Status** | Verified & Active on Preprod |
 
 ## What This Product Does
 In traditional web and Web3 ecosystems, proving age eligibility (such as for 18+ services, regulated gaming, or digital identity gates) requires users to disclose sensitive personal documents, passports, or exact birth dates. Storing and transmitting this Personally Identifiable Information (PII) creates severe security vulnerabilities, data leaks, and compliance burdens for platform operators.
